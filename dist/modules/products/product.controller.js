@@ -36,20 +36,24 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let result;
-        if (req.query) {
+        if (req.query.searchTerm) {
             const searchTerm = req.query.searchTerm;
             const regex = new RegExp(searchTerm, 'i');
-            result = yield product_service_1.ProductServices.getAllProductsFromDB(regex);
+            const result = yield product_service_1.ProductServices.getAllProductsFromDB(regex);
+            res.status(200).json({
+                success: true,
+                message: `Products matching search term ${regex} fetched successfully!`,
+                data: result,
+            });
         }
         else {
-            result = yield product_service_1.ProductServices.getAllProductsFromDB(0);
+            const result = yield product_service_1.ProductServices.getAllProductsFromDB(0);
+            res.status(200).json({
+                success: true,
+                message: 'Products fetched successfully!',
+                data: result,
+            });
         }
-        res.status(200).json({
-            success: true,
-            message: 'Products fetched successfully!',
-            data: result,
-        });
     }
     catch (err) {
         res.status(500).json({

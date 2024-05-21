@@ -9,6 +9,7 @@ const inventorySchema = new mongoose_1.Schema({
     quantity: { type: Number, required: true },
     inStock: { type: Boolean, required: true },
 });
+//export const InventoryModel = model<Inventory>('Inventory', inventorySchema);
 const productSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },

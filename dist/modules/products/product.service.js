@@ -19,13 +19,12 @@ const createProductIntoDB = (ProductData) => __awaiter(void 0, void 0, void 0, f
     return result;
 });
 const getAllProductsFromDB = (regex) => __awaiter(void 0, void 0, void 0, function* () {
-    let result;
     if (regex === 0) {
-        result = yield product_model_1.default.find();
+        const result = yield product_model_1.default.find();
         return result;
     }
     else {
-        result = yield product_model_1.default.find({ $or: [{ description: regex }, { name: regex }, { category: regex }, { tags: regex }] });
+        const result = yield product_model_1.default.find({ $or: [{ description: regex }, { name: regex }, { category: regex }, { tags: regex }] });
         return result;
     }
 });
