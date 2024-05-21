@@ -18,26 +18,33 @@ const createProductIntoDB = (ProductData) => __awaiter(void 0, void 0, void 0, f
     const result = yield product_model_1.default.create(ProductData);
     return result;
 });
-const getAllProductsFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.default.find();
-    return result;
+const getAllProductsFromDB = (regex) => __awaiter(void 0, void 0, void 0, function* () {
+    let result;
+    if (regex === 0) {
+        result = yield product_model_1.default.find();
+        return result;
+    }
+    else {
+        result = yield product_model_1.default.find({ $or: [{ description: regex }, { name: regex }, { category: regex }, { tags: regex }] });
+        return result;
+    }
 });
 const getSingleProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.default.aggregate([{ $match: { id } }]);
-    return result;
-});
-const deleteProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield product_model_1.default.deleteOne({ id });
+    const result = yield product_model_1.default.find({ _id: id });
     return result;
 });
 const updateProductFromDB = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield product_model_1.default.findByIdAndUpdate(id, data, { new: true });
     return result;
 });
+const deleteProductFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield product_model_1.default.deleteOne({ _id: id });
+    return result;
+});
 exports.ProductServices = {
     createProductIntoDB,
     getAllProductsFromDB,
     getSingleProductFromDB,
-    deleteProductFromDB,
     updateProductFromDB,
+    deleteProductFromDB,
 };
