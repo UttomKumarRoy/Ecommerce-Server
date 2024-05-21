@@ -29,16 +29,22 @@ const createProduct = async (req: Request, res: Response) => {
         const searchTerm = req.query.searchTerm as string;
         const regex = new RegExp(searchTerm, 'i');
         result = await ProductServices.getAllProductsFromDB(regex);
+        res.status(200).json({
+          success: true,
+          message: `Products matching search term ${regex} fetched successfully!`,
+          data: result,
+        });
 
       }else{
         result = await ProductServices.getAllProductsFromDB(0);
+        res.status(200).json({
+          success: true,
+          message: 'Products fetched successfully!',
+          data: result,
+        });
       }
 
-      res.status(200).json({
-        success: true,
-        message: 'Products fetched successfully!',
-        data: result,
-      });
+     
     } catch (err: any) {
       res.status(500).json({
         success: false,

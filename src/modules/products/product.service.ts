@@ -2,7 +2,7 @@ import { Product } from './product.interface';
 import  ProductModel  from './product.model';
 
 const createProductIntoDB = async (ProductData: Product) => {
- 
+  
   const result = await ProductModel.create(ProductData);
   return result;
 };
