@@ -7,13 +7,14 @@ const createProductIntoDB = async (ProductData: Product) => {
   return result;
 };
 
+
 const getAllProductsFromDB = async (regex : any) => {
-  let result;
+  
   if(regex===0){
-    result = await ProductModel.find();
+    const result = await ProductModel.find();
     return result;
   }else{
-    result = await ProductModel.find({$or:[{description:regex},{ name:regex}, {category:regex}, {tags:regex}]});
+    const result = await ProductModel.find({$or:[{description:regex},{ name:regex}, {category:regex}, {tags:regex}]});
     return result;
   }
 };

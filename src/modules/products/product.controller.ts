@@ -24,11 +24,10 @@ const createProduct = async (req: Request, res: Response) => {
 
   const getAllProducts = async (req: Request, res: Response) => {
     try {
-      let result;
-      if(req.query){
+      if(req.query.searchTerm){
         const searchTerm = req.query.searchTerm as string;
         const regex = new RegExp(searchTerm, 'i');
-        result = await ProductServices.getAllProductsFromDB(regex);
+        const result = await ProductServices.getAllProductsFromDB(regex);
         res.status(200).json({
           success: true,
           message: `Products matching search term ${regex} fetched successfully!`,
@@ -36,7 +35,7 @@ const createProduct = async (req: Request, res: Response) => {
         });
 
       }else{
-        result = await ProductServices.getAllProductsFromDB(0);
+        const result = await ProductServices.getAllProductsFromDB(0);
         res.status(200).json({
           success: true,
           message: 'Products fetched successfully!',

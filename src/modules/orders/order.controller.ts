@@ -6,6 +6,7 @@ const createOrder = async (req: Request, res: Response) => {
     try {
       const { order: orderData } = req.body;
       const zodParsedData = orderValidationSchema.parse(orderData);
+      
       const result = await OrderServices.createOrderIntoDB(zodParsedData);
   
       res.status(200).json({
@@ -25,7 +26,7 @@ const createOrder = async (req: Request, res: Response) => {
   const getAllOrders = async (req: Request, res: Response) => {
     try {
       let result;
-      if(req.query){
+      if(req.query.email){
         const email = req.query.email as string;
         const regex = new RegExp(email, 'i');
         result = await OrderServices.getAllOrdersFromDB(regex);
