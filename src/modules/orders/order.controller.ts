@@ -42,8 +42,8 @@ const createOrder = async (req: Request, res: Response) => {
           success: false,
           message: err.message || 'something went wrong',
           error: err,
-        });
-  }
+      });
+   }
 
   };
 
@@ -52,7 +52,7 @@ const createOrder = async (req: Request, res: Response) => {
       let result;
       if(req.query.email){
         const email = req.query.email as string;
-        const regex = new RegExp(email, 'i');
+        const regex = new RegExp(email);
         result = await OrderServices.getAllOrdersFromDB(regex);
         res.status(200).json({
             success: true,

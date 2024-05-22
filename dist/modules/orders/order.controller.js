@@ -56,7 +56,7 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         let result;
         if (req.query.email) {
             const email = req.query.email;
-            const regex = new RegExp(email, 'i');
+            const regex = new RegExp(email);
             result = yield order_service_1.OrderServices.getAllOrdersFromDB(regex);
             res.status(200).json({
                 success: true,
