@@ -37,7 +37,7 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         if (req.query.searchTerm) {
             const searchTerm = req.query.searchTerm;
-            const regex = new RegExp(searchTerm, 'i');
+            const regex = new RegExp(searchTerm);
             const result = yield product_service_1.ProductServices.getAllProductsFromDB(regex);
             res.status(200).json({
                 success: true,

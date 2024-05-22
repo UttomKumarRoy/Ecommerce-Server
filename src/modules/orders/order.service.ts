@@ -7,13 +7,13 @@ const createOrderIntoDB = async (ProductData: Order) => {
   return result;
 };
 
-const getAllOrdersFromDB = async (regex : number| RegExp) => {
+const getAllOrdersFromDB = async (email : string) => {
     let result;
-    if(regex===0){
+    if(email===""){
       result = await OrderModel.find();
       return result;
     }else{
-      result = await OrderModel.find({email:regex});
+      result = await OrderModel.find({email:email});
       return result;
     }
   };

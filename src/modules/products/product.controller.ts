@@ -25,7 +25,7 @@ const createProduct = async (req: Request, res: Response) => {
     try {
       if(req.query.searchTerm){
         const searchTerm = req.query.searchTerm as string;
-        const regex = new RegExp(searchTerm, 'i');
+        const regex = new RegExp(searchTerm);
         const result = await ProductServices.getAllProductsFromDB(regex);
         res.status(200).json({
           success: true,

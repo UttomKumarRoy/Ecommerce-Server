@@ -52,8 +52,7 @@ const createOrder = async (req: Request, res: Response) => {
       let result;
       if(req.query.email){
         const email = req.query.email as string;
-        const regex = new RegExp(email);
-        result = await OrderServices.getAllOrdersFromDB(regex);
+        result = await OrderServices.getAllOrdersFromDB(email);
         res.status(200).json({
             success: true,
             message: 'Orders fetched successfully for user email!',
@@ -61,7 +60,7 @@ const createOrder = async (req: Request, res: Response) => {
           });
 
       }else{
-        result = await OrderServices.getAllOrdersFromDB(0);
+        result = await OrderServices.getAllOrdersFromDB("");
         res.status(200).json({
             success: true,
             message: 'Orders fetched successfully!',

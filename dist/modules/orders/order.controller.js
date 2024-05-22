@@ -56,8 +56,7 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         let result;
         if (req.query.email) {
             const email = req.query.email;
-            const regex = new RegExp(email);
-            result = yield order_service_1.OrderServices.getAllOrdersFromDB(regex);
+            result = yield order_service_1.OrderServices.getAllOrdersFromDB(email);
             res.status(200).json({
                 success: true,
                 message: 'Orders fetched successfully for user email!',
@@ -65,7 +64,7 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             });
         }
         else {
-            result = yield order_service_1.OrderServices.getAllOrdersFromDB(0);
+            result = yield order_service_1.OrderServices.getAllOrdersFromDB("");
             res.status(200).json({
                 success: true,
                 message: 'Orders fetched successfully!',

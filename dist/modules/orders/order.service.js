@@ -18,14 +18,14 @@ const createOrderIntoDB = (ProductData) => __awaiter(void 0, void 0, void 0, fun
     const result = yield order_model_1.default.create(ProductData);
     return result;
 });
-const getAllOrdersFromDB = (regex) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllOrdersFromDB = (email) => __awaiter(void 0, void 0, void 0, function* () {
     let result;
-    if (regex === 0) {
+    if (email === "") {
         result = yield order_model_1.default.find();
         return result;
     }
     else {
-        result = yield order_model_1.default.find({ email: regex });
+        result = yield order_model_1.default.find({ email: email });
         return result;
     }
 });
