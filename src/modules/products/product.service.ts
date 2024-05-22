@@ -8,7 +8,7 @@ const createProductIntoDB = async (ProductData: Product) => {
 };
 
 
-const getAllProductsFromDB = async (regex : any) => {
+const getAllProductsFromDB = async (regex: number | RegExp) => {
   
   if(regex===0){
     const result = await ProductModel.find();
@@ -25,7 +25,7 @@ const getSingleProductFromDB = async (id: string) => {
 };
 
 
-const updateProductFromDB=  async (id: string, data:any) => {
+const updateProductFromDB=  async (id: string, data: object) => {
   const result= await ProductModel.findByIdAndUpdate(id, data, { new: true });
   return result;
 };

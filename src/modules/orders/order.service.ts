@@ -7,7 +7,7 @@ const createOrderIntoDB = async (ProductData: Order) => {
   return result;
 };
 
-const getAllOrdersFromDB = async (regex : any) => {
+const getAllOrdersFromDB = async (regex : number| RegExp) => {
     let result;
     if(regex===0){
       result = await OrderModel.find();

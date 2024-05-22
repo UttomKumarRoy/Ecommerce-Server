@@ -17,7 +17,7 @@ const order_service_1 = require("./order.service");
 const order_validation_1 = __importDefault(require("./order.validation"));
 const product_model_1 = __importDefault(require("../products/product.model"));
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, productId, price, quantity } = req.body;
+    const { productId, quantity } = req.body;
     try {
         const product = yield product_model_1.default.findById(productId);
         if (!product) {
@@ -46,7 +46,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }
@@ -76,7 +76,7 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }

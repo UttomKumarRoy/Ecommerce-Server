@@ -17,8 +17,7 @@ const product_service_1 = require("./product.service");
 const product_validation_1 = __importDefault(require("./product.validation"));
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { product: productData } = req.body;
-        const zodParsedData = product_validation_1.default.parse(productData);
+        const zodParsedData = product_validation_1.default.parse(req.body);
         const result = yield product_service_1.ProductServices.createProductIntoDB(zodParsedData);
         res.status(200).json({
             success: true,
@@ -29,7 +28,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }
@@ -58,7 +57,7 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }
@@ -76,7 +75,7 @@ const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }
@@ -96,7 +95,7 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }
@@ -114,7 +113,7 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'something went wrong',
+            message: 'server error',
             error: err,
         });
     }

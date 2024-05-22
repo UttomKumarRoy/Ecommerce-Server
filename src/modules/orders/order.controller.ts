@@ -5,7 +5,7 @@ import ProductModel from '../products/product.model';
 
 
 const createOrder = async (req: Request, res: Response) => {
-  const { email, productId, price, quantity } = req.body;
+  const { productId,  quantity } = req.body;
 
   try{
       const product = await ProductModel.findById(productId);
@@ -37,10 +37,10 @@ const createOrder = async (req: Request, res: Response) => {
           message: 'Order created successfully!',
           data: result,  
         });
-  } catch (err: any) {
+  } catch (err) {
       res.status(500).json({
           success: false,
-          message: err.message || 'something went wrong',
+          message: 'server error',
           error: err,
       });
    }
@@ -70,10 +70,10 @@ const createOrder = async (req: Request, res: Response) => {
       }
 
       
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).json({
         success: false,
-        message: err.message || 'something went wrong',
+        message: 'server error',
         error: err,
       });
     }

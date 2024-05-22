@@ -4,8 +4,7 @@ import productValidationSchema from './product.validation';
 
 const createProduct = async (req: Request, res: Response) => {
     try {
-      const { product: productData } = req.body;
-      const zodParsedData = productValidationSchema.parse(productData);
+      const zodParsedData = productValidationSchema.parse(req.body);
       const result = await ProductServices.createProductIntoDB(zodParsedData);
   
       res.status(200).json({
@@ -13,10 +12,10 @@ const createProduct = async (req: Request, res: Response) => {
         message: 'Product created successfully!',
         data: result,  
       });
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).json({
         success: false,
-        message: err.message || 'something went wrong',
+        message: 'server error',
         error: err,
       });
     }
@@ -44,10 +43,10 @@ const createProduct = async (req: Request, res: Response) => {
       }
 
      
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).json({
         success: false,
-        message: err.message || 'something went wrong',
+        message: 'server error',
         error: err,
       });
     }
@@ -65,10 +64,10 @@ const createProduct = async (req: Request, res: Response) => {
         message: 'Product fetched successfully!',
         data: result,
       });
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).json({
         success: false,
-        message: err.message || 'something went wrong',
+        message: 'server error',
         error: err,
       });
     }
@@ -90,10 +89,10 @@ const createProduct = async (req: Request, res: Response) => {
         message: 'Product updated successfully!',
         data: result,
       });
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).json({
         success: false,
-        message: err.message || 'something went wrong',
+        message: 'server error',
         error: err,
       });
     }
@@ -111,10 +110,10 @@ const createProduct = async (req: Request, res: Response) => {
         message: 'Product deleted successfully!',
         data: result,
       });
-    } catch (err: any) {
+    } catch (err) {
       res.status(500).json({
         success: false,
-        message: err.message || 'something went wrong',
+        message: 'server error',
         error: err,
       });
     }
